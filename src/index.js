@@ -1,6 +1,6 @@
 import express from "express";
-import authRouter from "./routes/authRoutes";
-import contentRouter from "./routes/contentRoutes";
+import authRouter from "./routes/authRoutes.js";
+import contentRouter from "./routes/contentRoutes.js";
 
 const app = express();
 app.use(express.json());

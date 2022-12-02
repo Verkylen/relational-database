@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createPost, createComment } from "../controllers/contentControllers";
+import { createPost, createComment } from "../controllers/contentControllers.js";
 
 const contentRouter = Router();
 contentRouter.post("/posts", createPost);

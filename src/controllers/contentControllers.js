@@ -1,5 +1,5 @@
 import { v4 as uuidV4 } from "uuid";
-import { postsCollection, sessionsCollection, usersCollection } from "../db";
+import { postsCollection, sessionsCollection, usersCollection } from "../db.js";
 
 export async function createPost(req, res) {
     const { title, text } = req.body;
