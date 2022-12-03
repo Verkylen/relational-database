@@ -66,3 +66,35 @@ export async function createComment(req, res) {
         res.sendStatus(500);
     }
 }
+
+export async function readPosts(req, res) {
+    const { authorization } = req.headers;
+  
+    const token = authorization?.replace("Bearer ", "");
+  
+    if (!token) {
+        return res.sendStatus(401);
+    }
+  
+    try {
+        const posts = await postsCollection
+            .aggregate([
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "userId",
+                        foreignField: "_id",
+                        as: "userId",
+                    },
+                },
+                { $unwind: "$userId" },
+                { $unset: "userId.password" }
+            ])
+            .sort({ _id: -1 })
+            .toArray();
+  
+        res.send(posts);
+    } catch {
+        res.sendStatus(500);
+    }
+}
