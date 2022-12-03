@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { v4 as uuidV4 } from "uuid";
 import { postsCollection, sessionsCollection, usersCollection } from "../db.js";
 
@@ -36,7 +37,7 @@ export async function createComment(req, res) {
     const { text } = req.body;
     const { idPost } = req.params;
     const { authorization } = req.headers;
-  
+
     const token = authorization?.replace("Bearer ", "");
   
     if (!token) {
